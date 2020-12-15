@@ -1,0 +1,432 @@
+*,
+*::after,
+*::before {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #42f4d4;
+  color: #c42d2d;
+  font: 18px/24px Arial, Helvetica, Sans-Serif;
+}
+/* font style*/
+@font-face {
+  font-style: normal;
+  font-style: normal;
+  font-family: 'invastion2000';
+  src: url('fonts/invastion2000.ttf') format('truetype');
+}
+
+/* header */
+.site-title {
+  margin: 55px 0 45px;
+  text-align: center;
+  color: #9541f4;
+  letter-spacing: 10px;
+  font: 100px/100px 'invastion2000', Arial, Helvetica, Sans-Serif;
+}
+
+.banner {
+  margin: 20px;
+  color: #9541f4;
+  text-align: center;
+  font: italic bold 50px/50px Arial, Helvetica, Sans-Serif;
+}
+
+/* the game board and game cards */
+.gameboard {
+  display: flex;
+  margin: auto;
+  max-width: 1110px;
+  flex-wrap: wrap;
+}
+
+.easy,
+.medium {
+  width: 740px;
+}
+
+.hard {
+  max-width: 1110px;
+}
+
+.card {
+  position: relative;
+  float: left;
+  margin: 5px;
+  width: 175px;
+  height: 175px;
+  text-align: center;
+}
+
+.card-back,
+.card-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  margin: auto;
+  padding: 5%;
+  width: 100%;
+}
+
+.card-front {
+  border: 12px solid #c42d2d;
+  background-color: #9541f4;
+}
+
+.card-back {
+  border: 10px solid #c42d2d;
+  background-color: #9541f4;
+  -webkit-transform: rotateX(+180deg);
+  transform: rotateX(+180deg);
+}
+
+/* clicking effect */
+.card.flipped .card-front {
+  -webkit-transform: rotateX(+180deg);
+  transform: rotateX(+180deg);
+}
+
+.card.flipped .card-back {
+  -webkit-transform: rotateX(0);
+  transform: rotateX(0);
+}
+
+/* footer */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.counter,
+.timing,
+.rating {
+  width: 33%;
+  text-align: center;
+}
+
+.info {
+  color: #9541f4;
+  letter-spacing: 5px;
+  font: 32px/1.25 'invastion2000', Arial, Helvetica, Sans-Serif;
+}
+
+.data {
+  letter-spacing: normal;
+  font: 700 32px/1.25 Arial, Helvetica, Sans-Serif;
+}
+
+/* modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* modal closed Button */
+.close {
+  color: #b3b3b3;
+  font: bold 24px/24px Arial, Helvetica, Sans-Serif;
+  width: 100%;
+  text-align: right;
+}
+
+.close:focus,
+.close:hover {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #42f4d4;
+  border: groove #393636 20px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+-webkit-animation-name: animatetop;
+-webkit-animation-duration: 0.4s;
+animation-name: animatetop;
+animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.modal-data {
+  float: left;
+  text-align: center;
+  width: 50%;
+}
+
+.play-again {
+  width: 100%;
+}
+
+.winner {
+  font: 40px/60px 'invastion2000', Arial, Helvetica, Sans-Serif;
+  color: #11e911;
+  margin: 10px;
+  text-align: center;
+  letter-spacing: 10px;
+  width: 100%;
+}
+
+.win-text {
+  font: italic 18px/24px Arial, Helvetica, Sans-Serif;
+  text-align: center;
+}
+
+button {
+  background: #ff3300;
+  border: groove #ffebe6 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #fff;
+  display: block;
+  font: bold 24px/24px Arial, Helvetica, Sans-Serif;
+  margin: auto;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #0039e6;
+  text-decoration: none;
+}
+
+.difficulty-button {
+  width: 145px;
+}
+
+.site-title.start {
+  margin: 0 0 40px;
+}
+
+.choose {
+  font: 40px/60px 'invastion2000', Arial, Helvetica, Sans-Serif;
+  color: #9541f4;
+  margin: 15px 0 35px;
+  text-align: center;
+  letter-spacing: 6px;
+  width: 100%;
+}
+
+.start {
+  flex-basis: 100%;
+}
+
+@media (max-width: 1200px) {
+  .hard .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hard {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hard .card {
+    width: 125px;
+    height: 125px;
+  }
+
+  .hard {
+    max-width: 810px;
+  }
+}
+
+@media (max-width: 880px) {
+  .hard .card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hard {
+    max-width: 660px;
+  }
+}
+
+@media (max-width: 800px) {
+  .site-title {
+    font-size: 75px;
+    margin: 45px 0 30px;
+  }
+
+  .banner {
+    font-size: 30px;
+    margin: 15px;
+  }
+
+  .info {
+    font-size: 28px;
+  }
+
+  .card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .easy,
+  .medium {
+    max-width: 640px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hard {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 660px) {
+  .info {
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+
+  .data {
+    font-size: 24px;
+  }
+
+  .card {
+    width: 125px;
+    height: 125px;
+  }
+
+  .easy,
+  .medium {
+    max-width: 550px;
+  }
+
+  .timing {
+    order: 1;
+    flex-basis: 75%;
+  }
+
+  .counter {
+    order: 2;
+    flex-basis: 50%;
+  }
+
+  .rating {
+    order: 3;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .site-title {
+    font-size: 60px;
+    margin: 25px 0 10px;
+  }
+
+  .banner {
+    font-size: 24px;
+    margin: 15px;
+  }
+
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .easy,
+  .medium {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 500px) {
+  .site-title {
+    font-size: 60px;
+    margin: 25px 0 10px;
+  }
+
+  .banner {
+    font-size: 24px;
+    margin: 15px;
+  }
+
+  .hard .card {
+    width: 75px;
+    height: 75px;
+  }
+
+  .hard {
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 450px) {
+  .site-title {
+    font-size: 60px;
+    margin: 30px 0 5px;
+  }
+
+  .banner {
+    font-size: 18px;
+    margin: 15px;
+  }
+
+  .easy,
+  .medium {
+    max-width: 450px;
+  }
+
+  .card {
+    width: 70px;
+    height: 70px;
+  }
+
+  .data,
+  .info {
+    font-size: 30px;
+  }
+
+  .counter,
+  .timing {
+    flex-basis: 100%;
+  }
+}
