@@ -250,7 +250,7 @@
   });
 
   // plays a new game
-  $("#restart").click(function() {
+  $("#restart-win").click(function() {
     $("#winModal").hide();
     $("#startModal").show();
   });

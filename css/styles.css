@@ -430,3 +430,45 @@ button:hover {
     flex-basis: 100%;
   }
 }
+
+
+/* Mobile-first styles */
+
+/* Add styles for screens up to 768px wide (typical tablet size) */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  /* Add more responsive styles here */
+}
+
+/* Add styles for screens up to 480px wide (typical mobile size) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Add even more responsive styles here */
+}
+
+
+/* Mobile-first styles */
+
+/* Add styles for screens up to 768px wide (typical tablet size) */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  /* Add more responsive styles here */
+}
+
+/* Add styles for screens up to 480px wide (typical mobile size) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Add even more responsive styles here */
+}
