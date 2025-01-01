@@ -1,474 +1,234 @@
+/* General Reset */
 *,
 *::after,
 *::before {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: #42f4d4;
   color: #c42d2d;
-  font: 18px/24px Arial, Helvetica, Sans-Serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
 }
-/* font style*/
+
+/* Font Style */
 @font-face {
-  font-style: normal;
-  font-style: normal;
   font-family: 'invastion2000';
   src: url('fonts/invastion2000.ttf') format('truetype');
 }
 
-/* header */
+/* Header */
 .site-title {
-  margin: 55px 0 45px;
-  text-align: center;
   color: #9541f4;
-  letter-spacing: 10px;
-  font: 100px/100px 'invastion2000', Arial, Helvetica, Sans-Serif;
+  font-family: 'invastion2000', Arial, Helvetica, sans-serif;
+  font-size: 2.5rem;
+  margin: 20px 0;
 }
 
 .banner {
-  margin: 20px;
   color: #9541f4;
-  text-align: center;
-  font: italic bold 50px/50px Arial, Helvetica, Sans-Serif;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
 }
 
-/* the game board and game cards */
+/* Game Board */
 .gameboard {
-  display: flex;
+  display: grid;
+  gap: 10px;
+  justify-content: center;
   margin: auto;
-  max-width: 1110px;
-  flex-wrap: wrap;
-}
-
-.easy,
-.medium {
-  width: 740px;
-}
-
-.hard {
-  max-width: 1110px;
+  width: 100%;
+  padding: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  max-width: 600px; /* Limit the game board width for smaller screens */
 }
 
 .card {
+  background-color: #9541f4;
+  border: 5px solid #c42d2d;
+  border-radius: 8px;
   position: relative;
-  float: left;
-  margin: 5px;
-  width: 175px;
-  height: 175px;
-  text-align: center;
+  width: 100%;
+  padding-bottom: 100%; /* Maintain square aspect ratio */
+  overflow: hidden;
 }
 
-.card-back,
-.card-front {
+.card .card-front,
+.card .card-back {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  -webkit-transition: -webkit-transform 0.3s;
-  transition: transform 0.3s;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transition: transform 0.3s;
 }
 
+.card .card-front {
+  background-color: #c42d2d;
+}
+
+.card .card-back {
+  background-color: #9541f4;
+  transform: rotateY(180deg);
+}
+
+.card.flipped .card-front {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .card-back {
+  transform: rotateY(0);
+}
+
+/* Card Images */
 .card-images {
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
-  margin: auto;
-  padding: 5%;
   width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the image fits within the card without cropping */
+  object-position: center; /* Centers the image within the card */
 }
 
-.card-front {
-  border: 12px solid #c42d2d;
-  background-color: #9541f4;
-}
-
-.card-back {
-  border: 10px solid #c42d2d;
-  background-color: #9541f4;
-  -webkit-transform: rotateX(+180deg);
-  transform: rotateX(+180deg);
-}
-
-/* clicking effect */
-.card.flipped .card-front {
-  -webkit-transform: rotateX(+180deg);
-  transform: rotateX(+180deg);
-}
-
-.card.flipped .card-back {
-  -webkit-transform: rotateX(0);
-  transform: rotateX(0);
-}
-
-/* footer */
+/* Footer */
 footer {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   justify-content: center;
+  background-color: #9541f4;
+  color: #fff;
+  padding: 10px;
 }
 
-.counter,
-.timing,
-.rating {
-  width: 33%;
+.counter, .timing, .rating {
+  flex: 1 1 100px;
   text-align: center;
+  margin: 10px;
 }
 
 .info {
-  color: #9541f4;
-  letter-spacing: 5px;
-  font: 32px/1.25 'invastion2000', Arial, Helvetica, Sans-Serif;
+  font-family: 'invastion2000', Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
 }
 
 .data {
-  letter-spacing: normal;
-  font: 700 32px/1.25 Arial, Helvetica, Sans-Serif;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
-/* modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-/* modal closed Button */
-.close {
-  color: #b3b3b3;
-  font: bold 24px/24px Arial, Helvetica, Sans-Serif;
-  width: 100%;
-  text-align: right;
-}
-
-.close:focus,
-.close:hover {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-content {
-  position: relative;
-  background-color: #42f4d4;
-  border: groove #393636 20px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-  padding: 20px;
-  width: 80%;
--webkit-animation-name: animatetop;
--webkit-animation-duration: 0.4s;
-animation-name: animatetop;
-animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-.modal-data {
-  float: left;
-  text-align: center;
-  width: 50%;
-}
-
-.play-again {
-  width: 100%;
-}
-
-.winner {
-  font: 40px/60px 'invastion2000', Arial, Helvetica, Sans-Serif;
-  color: #11e911;
-  margin: 10px;
-  text-align: center;
-  letter-spacing: 10px;
-  width: 100%;
-}
-
-.win-text {
-  font: italic 18px/24px Arial, Helvetica, Sans-Serif;
-  text-align: center;
-}
-
+/* Buttons */
 button {
-  background: #ff3300;
-  border: groove #ffebe6 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  background-color: #ff3300;
+  border: 2px solid #ffebe6;
+  border-radius: 8px;
   color: #fff;
-  display: block;
-  font: bold 24px/24px Arial, Helvetica, Sans-Serif;
-  margin: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 10px auto;
   padding: 10px 20px;
-  text-decoration: none;
 }
 
 button:hover {
-  background: #0039e6;
-  text-decoration: none;
+  background-color: #0039e6;
+  cursor: pointer;
 }
 
-.difficulty-button {
-  width: 145px;
-}
-
-.site-title.start {
-  margin: 0 0 40px;
-}
-
-.choose {
-  font: 40px/60px 'invastion2000', Arial, Helvetica, Sans-Serif;
-  color: #9541f4;
-  margin: 15px 0 35px;
-  text-align: center;
-  letter-spacing: 6px;
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
 }
 
-.start {
-  flex-basis: 100%;
+.modal-content {
+  background-color: #42f4d4;
+  border: 5px solid #393636;
+  border-radius: 10px;
+  margin: 10% auto;
+  padding: 20px;
+  max-width: 90%;
+  text-align: center;
 }
 
-@media (max-width: 1200px) {
-  .hard .card {
-    width: 150px;
-    height: 150px;
-  }
-
-  .hard {
-    max-width: 960px;
-  }
+.modal .close {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
 }
 
-@media (max-width: 1200px) {
-  .hard .card {
-    width: 125px;
-    height: 125px;
-  }
-
-  .hard {
-    max-width: 810px;
-  }
-}
-
-@media (max-width: 880px) {
-  .hard .card {
-    width: 100px;
-    height: 100px;
-  }
-
-  .hard {
-    max-width: 660px;
-  }
-}
-
-@media (max-width: 800px) {
-  .site-title {
-    font-size: 75px;
-    margin: 45px 0 30px;
-  }
-
-  .banner {
-    font-size: 30px;
-    margin: 15px;
-  }
-
-  .info {
-    font-size: 28px;
-  }
-
-  .card {
-    width: 150px;
-    height: 150px;
-  }
-
-  .easy,
-  .medium {
-    max-width: 640px;
-  }
-}
-
-@media (max-width: 700px) {
-  .hard {
-    max-width: 440px;
-  }
-}
-
-@media (max-width: 660px) {
-  .info {
-    font-size: 24px;
-    letter-spacing: 3px;
-  }
-
-  .data {
-    font-size: 24px;
-  }
-
-  .card {
-    width: 125px;
-    height: 125px;
-  }
-
-  .easy,
-  .medium {
-    max-width: 550px;
-  }
-
-  .timing {
-    order: 1;
-    flex-basis: 75%;
-  }
-
-  .counter {
-    order: 2;
-    flex-basis: 50%;
-  }
-
-  .rating {
-    order: 3;
-    flex-basis: 100%;
-  }
-}
-
-@media (max-width: 580px) {
-  .site-title {
-    font-size: 60px;
-    margin: 25px 0 10px;
-  }
-
-  .banner {
-    font-size: 24px;
-    margin: 15px;
-  }
-
-  .card {
-    width: 100px;
-    height: 100px;
-  }
-
-  .easy,
-  .medium {
-    max-width: 440px;
-  }
-}
-
-@media (max-width: 500px) {
-  .site-title {
-    font-size: 60px;
-    margin: 25px 0 10px;
-  }
-
-  .banner {
-    font-size: 24px;
-    margin: 15px;
-  }
-
-  .hard .card {
-    width: 75px;
-    height: 75px;
-  }
-
-  .hard {
-    max-width: 340px;
-  }
-}
-
-@media (max-width: 450px) {
-  .site-title {
-    font-size: 60px;
-    margin: 30px 0 5px;
-  }
-
-  .banner {
-    font-size: 18px;
-    margin: 15px;
-  }
-
-  .easy,
-  .medium {
-    max-width: 450px;
-  }
-
-  .card {
-    width: 70px;
-    height: 70px;
-  }
-
-  .data,
-  .info {
-    font-size: 30px;
-  }
-
-  .counter,
-  .timing {
-    flex-basis: 100%;
-  }
-}
-
-
-/* Mobile-first styles */
-
-/* Add styles for screens up to 768px wide (typical tablet size) */
+/* Responsive Design */
 @media (max-width: 768px) {
-  body {
-    font-size: 16px;
+  .site-title {
+    font-size: 2rem;
   }
 
-  /* Add more responsive styles here */
+  .banner {
+    font-size: 1.2rem;
+  }
+
+  .gameboard {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 8px;
+  }
+
+  .card {
+    border: 3px solid #c42d2d;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+
+  .counter, .timing, .rating {
+    flex: 1 1 auto;
+    margin: 5px 0;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
 }
 
-/* Add styles for screens up to 480px wide (typical mobile size) */
 @media (max-width: 480px) {
-  body {
-    font-size: 14px;
+  .site-title {
+    font-size: 1.5rem;
   }
 
-  /* Add even more responsive styles here */
-}
-
-
-/* Mobile-first styles */
-
-/* Add styles for screens up to 768px wide (typical tablet size) */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+  .banner {
+    font-size: 1rem;
   }
 
-  /* Add more responsive styles here */
-}
-
-/* Add styles for screens up to 480px wide (typical mobile size) */
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
+  .gameboard {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 5px;
   }
 
-  /* Add even more responsive styles here */
+  .card {
+    border: 2px solid #c42d2d;
+  }
+
+  .info, .data {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 0.8rem;
+  }
 }
